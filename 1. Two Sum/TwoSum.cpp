@@ -54,7 +54,7 @@ public:
         for (int i = 0; i < nums.size(); ++i) 
         {
             int complement = target - nums[i];
-            if(num_map.count(complement)>0)
+            if(num_map.count(complement)>0 && num_map[complement] != i)
             {
                 return {num_map[complement], i};
             }
