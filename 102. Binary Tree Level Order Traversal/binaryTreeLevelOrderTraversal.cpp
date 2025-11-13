@@ -51,4 +51,33 @@ public:
 
         return result;
     }
+
+    //DFS approach
+    //O(n) time complexity
+    //O(h) space complexity due to call stack, h is the height of the tree
+    //Worst case space complexity O(n) for skewed tree
+    //Best case space complexity O(log n) for balanced tree
+    vector<vector<int>> levelOrderDFS(TreeNode* root)
+    {
+        vector<vector<int>> result;
+        levelOrderDFSHelper(root, 0, result);
+        return result;
+    } 
+
+    void levelOrderDFSHelper(TreeNode* node, int level, vector<vector<int>>& result)
+    {
+        if(node == nullptr)
+            return;
+
+        // Level is known
+        // create vector if it is not exist
+        if(result.size() == level)
+        {
+            result.push_back(vector<int>());
+        }
+        result[level].push_back(node->val);
+
+        levelOrderDFSHelper(node->left, level + 1, result);
+        levelOrderDFSHelper(node->right, level + 1, result);
+    }
 };
